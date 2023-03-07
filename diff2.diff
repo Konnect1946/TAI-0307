@@ -1,0 +1,22 @@
+diff --git a/server.js b/server.js
+index 65f3b85..60d668d 100755
+--- a/server.js
++++ b/server.js
+@@ -1010,7 +1010,7 @@ app.post("/generate_openai", jsonParser, function(request, response_generate_ope
+ 
+     console.log(request.body);
+     var data = {
+-        "prompt": request.body.prompt,
++        "messages": request.body.messages,
+         "model": request.body.model, // TODO REPLACED HERE
+         "temperature": request.body.temperature,
+         "max_tokens": request.body.max_tokens,
+@@ -1023,7 +1023,7 @@ app.post("/generate_openai", jsonParser, function(request, response_generate_ope
+         
+         headers: { "Content-Type": "application/json",  "Authorization": "Bearer "+api_key_openai}
+     };
+-    client.post(api_openai+"/completions",args, function (data, response) {
++    client.post(api_openai+"/chat/completions",args, function (data, response) {
+         console.log(data);
+         if(response.statusCode <= 299){
+             console.log(data);
